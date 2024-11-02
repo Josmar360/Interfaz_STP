@@ -123,9 +123,97 @@ class Aplicacion(tk.Tk):
                 fg='#8f7768',  # Color del texto
                 width=25
             )
-            btn.config(command=lambda opt=opcion,
-                       b=btn: self.mostrar_opciones_configuracion_empresas(opt, b))
+            # Ajustar el comando dependiendo de la opción
+            if opcion == "Saldo":
+                btn.config(command=lambda opt=opcion,
+                           # Llama a la función mostrar_saldo
+                           b=btn: self.mostrar_saldo(opt, b))
+            elif opcion == "Manto. Cuentas":
+                btn.config(command=lambda opt=opcion,
+                           # Llama a la función mostrar_manto_cuentas
+                           b=btn: self.mostrar_manto_cuentas(opt, b))
+            elif opcion == "Manto. Empresas":
+                btn.config(command=lambda opt=opcion,
+                           # Llama a la función mostrar_manto_empresas
+                           b=btn: self.mostrar_manto_empresas(opt, b))
+            elif opcion == "Configuración Empresas":
+                btn.config(command=lambda opt=opcion,
+                           # Llama a la función mostrar_opciones_configuracion_empresas
+                           b=btn: self.mostrar_opciones_configuracion_empresas(opt, b))
             btn.pack(side=tk.LEFT, padx=2, pady=1)
+
+    def mostrar_saldo(self, opcion, boton):
+        # Limpiar el frame de configuración antes de agregar nuevas opciones
+        for widget in self.frame_configuracion.winfo_children():
+            widget.destroy()
+
+        # Restablecer el color del botón anterior en el menú de Cuentas
+        if self.boton_seleccionado_cuentas:
+            self.boton_seleccionado_cuentas.config(
+                bg='#d0cdc4')  # Color original
+
+        # Cambiar el color del botón seleccionado en el menú de Cuentas
+        boton.config(bg='#b9b1ad')  # Color más oscuro
+        self.boton_seleccionado_cuentas = boton  # Guardar el botón seleccionado
+
+        # Limpiar el menú de configuración anterior si existe
+        for widget in self.frame_configuracion.winfo_children():
+            widget.destroy()
+
+        print("Mostrando el saldo actual...")  # Lógica para mostrar el saldo
+
+    def mostrar_manto_cuentas(self, opcion, boton):
+        # Limpiar el frame de configuración antes de agregar nuevas opciones
+        for widget in self.frame_configuracion.winfo_children():
+            widget.destroy()
+
+        # Restablecer el color del botón anterior en el menú de Cuentas
+        if self.boton_seleccionado_cuentas:
+            self.boton_seleccionado_cuentas.config(
+                bg='#d0cdc4')  # Color original
+
+        # Cambiar el color del botón seleccionado en el menú de Cuentas
+        boton.config(bg='#b9b1ad')  # Color más oscuro
+        self.boton_seleccionado_cuentas = boton  # Guardar el botón seleccionado
+
+        # Limpiar el menú de configuración anterior si existe
+        for widget in self.frame_configuracion.winfo_children():
+            widget.destroy()
+
+        # Mostrar las opciones del menú "Configuración Empresas"
+        opciones_configuracion = ["Propias",
+                                  "Terceros", "Manto. Cuenta Terceros"]
+        for opcion in opciones_configuracion:
+            btn = tk.Button(
+                self.frame_configuracion,
+                text=opcion,
+                bg='#d0cdc4',  # Color de fondo del botón
+                fg='#8f7768',  # Color del texto
+                width=25
+            )
+            btn.config(command=lambda opt=opcion: self.mostrar_mensaje(opt))
+            btn.pack(side=tk.LEFT, padx=2, pady=1)
+
+    def mostrar_manto_empresas(self, opcion, boton):
+        # Limpiar el frame de configuración antes de agregar nuevas opciones
+        for widget in self.frame_configuracion.winfo_children():
+            widget.destroy()
+
+        # Restablecer el color del botón anterior en el menú de Cuentas
+        if self.boton_seleccionado_cuentas:
+            self.boton_seleccionado_cuentas.config(
+                bg='#d0cdc4')  # Color original
+
+        # Cambiar el color del botón seleccionado en el menú de Cuentas
+        boton.config(bg='#b9b1ad')  # Color más oscuro
+        self.boton_seleccionado_cuentas = boton  # Guardar el botón seleccionado
+
+        # Limpiar el menú de configuración anterior si existe
+        for widget in self.frame_configuracion.winfo_children():
+            widget.destroy()
+
+        # Lógica para mantenimiento de empresas
+        print("Mostrando mantenimiento de empresas...")
 
     def mostrar_opciones_configuracion_empresas(self, opcion, boton):
         # Limpiar el frame de configuración antes de agregar nuevas opciones
