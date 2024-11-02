@@ -1,0 +1,121 @@
+import tkinter as tk
+from tkinter import ttk
+from create_account import create_account_interface
+
+
+def create_interface():
+    root = tk.Tk()
+    root.title("Generales")
+    root.configure(bg="#d9f0ff")  # Fondo azul pastel claro para la ventana
+
+    # Main Frame con diseño y color de fondo azul pastel
+    main_frame = ttk.Frame(root, padding="15 15 15 15", style="Main.TFrame")
+    main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+    main_frame.columnconfigure(0, weight=1)
+
+    # Estilos de colores
+    style = ttk.Style()
+    style.configure("TLabel", background="#d9f0ff", font=("Arial", 10))
+    style.configure("TCheckbutton", background="#d9f0ff")
+    style.configure("TRadiobutton", background="#d9f0ff")
+    style.configure("Main.TFrame", background="#d9f0ff")
+    # Fondo azul pastel más oscuro para títulos
+    style.configure("Title.TLabel", font=(
+        "Arial", 12, "bold"), background="#91ccea")
+    style.configure("SubTitle.TLabel", font=(
+        "Arial", 10, "bold"), background="#bde0fe")
+    style.configure("TFrame", background="#bde0fe",
+                    padding="10 10 10 10", relief="groove", borderwidth=2)
+
+    # Sección: Título principal y subtítulo
+    title_frame = ttk.Frame(main_frame, style="TFrame")
+    title_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Label(title_frame, text="ENGEN", style="SubTitle.TLabel").grid(
+        row=0, column=0, sticky=tk.W)
+    ttk.Label(title_frame, text="Generales", style="Title.TLabel").grid(
+        row=1, column=0, sticky=tk.W)
+
+    # Sección: Enviar órdenes
+    orders_frame = ttk.Frame(main_frame, style="TFrame")
+    orders_frame.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Checkbutton(
+        orders_frame, text="Enviar órdenes en horarios/días extendidos").grid(row=0, column=0, sticky=tk.W)
+
+    # Sección: Activar/Desactivar
+    activate_frame = ttk.Frame(main_frame, style="TFrame")
+    activate_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Label(activate_frame, text="Activar/Desactivar",
+              style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
+    selected_option = tk.StringVar(value="Participante indirecto del SPEI")
+    options = ["Participante indirecto del SPEI", "Empresa Crypto",
+               "Persona Física con PD", "Participante Directo"]
+    for i, option in enumerate(options, start=1):
+        ttk.Radiobutton(activate_frame, text=option, variable=selected_option,
+                        value=option).grid(row=i, column=0, sticky=tk.W)
+
+    # Sección: Opciones adicionales
+    additional_frame = ttk.Frame(main_frame, style="TFrame")
+    additional_frame.grid(row=3, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Checkbutton(additional_frame, text="Validar cuenta destino").grid(
+        row=0, column=0, sticky=tk.W)
+    ttk.Checkbutton(additional_frame, text="Omitir validación del monto disponible antes de enviar operaciones").grid(
+        row=1, column=0, sticky=tk.W)
+
+    # Sección: Prefijo de Cuentas Propias
+    prefix_frame = ttk.Frame(main_frame, style="TFrame")
+    prefix_frame.grid(row=4, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Label(prefix_frame, text="Prefijo de Cuentas Propias",
+              style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
+    ttk.Checkbutton(prefix_frame, text="Usar prefijo de Sub Empresa para recepción de órdenes").grid(
+        row=1, column=0, sticky=tk.W)
+    ttk.Checkbutton(prefix_frame, text="Usar prefijo para recepción de órdenes").grid(
+        row=2, column=0, sticky=tk.W)
+    ttk.Label(prefix_frame, text="Prefijo:").grid(row=3, column=0, sticky=tk.W)
+    prefijo_entry = ttk.Entry(prefix_frame, width=10)
+    prefijo_entry.grid(row=3, column=1, sticky=tk.W, padx=(0, 10))
+    prefijo_entry.insert(0, "")
+
+    # Sección: Configuración del Subprefijo
+    subprefix_frame = ttk.Frame(main_frame, style="TFrame")
+    subprefix_frame.grid(row=5, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Label(subprefix_frame, text="Configuración del Subprefijo",
+              style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
+    ttk.Label(subprefix_frame, text="Longitud del Subprefijo:").grid(
+        row=1, column=0, sticky=tk.W)
+    subprefijo_entry = ttk.Entry(subprefix_frame, width=5)
+    subprefijo_entry.grid(row=1, column=1, sticky=tk.W)
+    subprefijo_entry.insert(0, "1")
+
+    # Sección: Cuenta Concentradora
+    concentrator_frame = ttk.Frame(main_frame, style="TFrame")
+    concentrator_frame.grid(row=6, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Label(concentrator_frame, text="Cuenta Concentradora",
+              style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
+    cuenta_combobox = ttk.Combobox(concentrator_frame, values=["Ninguno"])
+    cuenta_combobox.grid(row=1, column=0, sticky=tk.W)
+    cuenta_combobox.set("Ninguno")
+    ttk.Button(concentrator_frame, text="Crear",
+               command=create_account_interface).grid(row=1, column=1, sticky=tk.W)
+    ttk.Label(concentrator_frame, text="Cuenta Concentradora para la empresa").grid(
+        row=1, column=2, sticky=tk.W)
+
+    # Sección: ACL
+    acl_frame = ttk.Frame(main_frame, style="TFrame")
+    acl_frame.grid(row=7, column=0, sticky=(tk.W, tk.E), pady=5)
+    ttk.Label(acl_frame, text="ACL", style="SubTitle.TLabel").grid(
+        row=0, column=0, sticky=tk.W)
+    acl_entry = ttk.Entry(acl_frame, width=30)
+    acl_entry.grid(row=1, column=0, sticky=tk.W, padx=(0, 10))
+    ttk.Label(acl_frame, text="IP/Subred válidos para servicios web (separados por espacios)").grid(
+        row=1, column=1, sticky=tk.W)
+
+    # Botón de Aplicar
+    ttk.Button(main_frame, text="Aplicar").grid(
+        row=8, column=0, sticky=tk.W, pady=(20, 0))
+
+    # Iniciar la ventana
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    create_interface()
