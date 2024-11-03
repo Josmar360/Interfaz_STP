@@ -1,4 +1,5 @@
 import tkinter as tk
+from Pantallas.Nueva_Empresa import Nueva_Empresa  # Importa el archivo Nueva_Empresa.py
 
 
 class Aplicacion(tk.Tk):
@@ -41,18 +42,16 @@ class Aplicacion(tk.Tk):
         btn = tk.Button(frame, text=texto, bg='#d0cdc4',
                         fg='#8f7768', width=25)
         btn.config(command=lambda t=texto,
-                   b=btn: comando(t, b))  # Cambiado aquí
+                   b=btn: comando(t, b))
         return btn
 
     def mostrar_opciones_menu_principal(self, opcion, boton):
-        # Cambiar el color del botón seleccionado en el menú principal
         if self.boton_seleccionado_principal:
             self.boton_seleccionado_principal.config(bg='#d0cdc4')
 
         boton.config(bg='#b9b1ad')
         self.boton_seleccionado_principal = boton
 
-        # Limpiar todos los menús y submenús antes de mostrar nuevas opciones
         self.limpiar_todo()
 
         if opcion == "Spei":
@@ -67,24 +66,20 @@ class Aplicacion(tk.Tk):
         self.limpiar_configuracion()
 
     def limpiar_submenu(self):
-        """Limpia el frame de submenú sin afectar el menú principal."""
         for widget in self.frames["submenu"].winfo_children():
             widget.destroy()
 
     def limpiar_menu(self):
-        """Limpia el frame de menú sin afectar el menú principal ni el submenú."""
         for widget in self.frames["menu"].winfo_children():
             widget.destroy()
-        self.boton_seleccionado_cuentas = None  # Reinicia la variable
+        self.boton_seleccionado_cuentas = None
 
     def limpiar_configuracion(self):
-        """Limpia el frame de configuración sin afectar otros menús."""
         for widget in self.frames["configuracion"].winfo_children():
             widget.destroy()
-        self.boton_seleccionado_configuracion = None  # Reinicia la variable
+        self.boton_seleccionado_configuracion = None
 
     def mostrar_opciones_spei(self):
-        # Opciones del menú "Spei"
         opciones_spei = ["Recepción de Órdenes", "Cuentas",
                          "Catálogos", "Varios/Administración"]
         for opcion in opciones_spei:
@@ -93,20 +88,17 @@ class Aplicacion(tk.Tk):
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
     def mostrar_opciones_spei_seleccionada(self, opcion, boton):
-        # Cambiar el color del botón seleccionado en el menú de Spei
         if self.boton_seleccionado_spei:
-            # Solo cambiar el color si el botón seleccionado aún existe
             try:
                 self.boton_seleccionado_spei.config(bg='#d0cdc4')
             except tk.TclError:
-                pass  # El botón ya no existe
+                pass
 
         boton.config(bg='#b9b1ad')
         self.boton_seleccionado_spei = boton
 
-        # Limpiar el menú y configuración antes de mostrar nuevas opciones
         self.limpiar_menu()
-        self.limpiar_configuracion()  # Asegúrate de limpiar la configuración
+        self.limpiar_configuracion()
 
         if opcion == "Recepción de Órdenes":
             self.mostrar_recepcion_ordenes()
@@ -121,7 +113,6 @@ class Aplicacion(tk.Tk):
         print("Mostrando la recepción de órdenes...")
 
     def mostrar_cuentas(self):
-        # Opciones del menú "Cuentas"
         opciones_cuentas = ["Saldo", "Manto. Cuentas",
                             "Manto. Empresas", "Configuración Empresas"]
         for opcion in opciones_cuentas:
@@ -130,18 +121,15 @@ class Aplicacion(tk.Tk):
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
     def mostrar_opciones_cuentas_seleccionada(self, opcion, boton):
-        # Cambiar el color del botón seleccionado en el menú de cuentas
         if self.boton_seleccionado_cuentas:
-            # Solo cambiar el color si el botón seleccionado aún existe
             try:
                 self.boton_seleccionado_cuentas.config(bg='#d0cdc4')
             except tk.TclError:
-                pass  # El botón ya no existe
+                pass
 
         boton.config(bg='#b9b1ad')
         self.boton_seleccionado_cuentas = boton
 
-        # Limpiar la configuración antes de mostrar nuevas opciones
         self.limpiar_configuracion()
 
         if opcion == "Saldo":
@@ -157,7 +145,6 @@ class Aplicacion(tk.Tk):
         print("Mostrando el saldo actual...")
 
     def mostrar_manto_cuentas(self):
-        # Opciones del menú "Manto. Cuentas"
         opciones_manto_cuentas = ["Propias",
                                   "Terceros", "Manto. Cuenta Terceros"]
         for opcion in opciones_manto_cuentas:
@@ -166,22 +153,34 @@ class Aplicacion(tk.Tk):
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
     def mostrar_opciones_manto_cuentas_seleccionada(self, opcion, boton):
-        # Cambiar el color del botón seleccionado en el menú de Manto. Cuentas
         if self.boton_seleccionado_configuracion:
-            # Solo cambiar el color si el botón seleccionado aún existe
             try:
                 self.boton_seleccionado_configuracion.config(bg='#d0cdc4')
             except tk.TclError:
-                pass  # El botón ya no existe
+                pass
 
         boton.config(bg='#b9b1ad')
         self.boton_seleccionado_configuracion = boton
 
-        # Mostrar el mensaje y limpiar el menú
         self.mostrar_mensaje(opcion)
 
     def mostrar_manto_empresas(self):
         print("Mostrando mantenimiento de empresas...")
+
+        # Botón 'Nueva' para llamar a la función de Nueva_Empresa.py
+        btn_nueva = tk.Button(
+            self.frames["configuracion"],
+            text="Nueva",
+            bg='#d0cdc4',
+            fg='#8f7768',
+            width=25,
+            command=self.ejecutar_nueva_empresa
+        )
+        btn_nueva.pack(pady=5)
+
+    def ejecutar_nueva_empresa(self):
+        """Llama a la función 'Nueva_Empresa' del archivo Nueva_Empresa.py."""
+        Nueva_Empresa()
 
     def mostrar_opciones_configuracion_empresas(self):
         opciones_configuracion = ["Generales", "Traspasos", "Tarjeta Débito"]
@@ -203,20 +202,16 @@ class Aplicacion(tk.Tk):
                 self.frames["menu"], opcion, self.mostrar_opciones_varios_seleccionada)
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
-#####
     def mostrar_opciones_varios_seleccionada(self, opcion, boton):
-        # Cambiar el color del botón seleccionado en el menú de cuentas
         if self.boton_seleccionado_cuentas:
-            # Solo cambiar el color si el botón seleccionado aún existe
             try:
                 self.boton_seleccionado_cuentas.config(bg='#d0cdc4')
             except tk.TclError:
-                pass  # El botón ya no existe
+                pass
 
         boton.config(bg='#b9b1ad')
         self.boton_seleccionado_cuentas = boton
 
-        # Limpiar la configuración antes de mostrar nuevas opciones
         self.limpiar_configuracion()
 
         if opcion == "Archivos":
@@ -225,39 +220,26 @@ class Aplicacion(tk.Tk):
             self.mostrar_configuracion()
         elif opcion == "Folio Solicitud CEP":
             self.mostrar_folio_solicitud_CEP()
-######
+
     def mostrar_archivos(self):
-        print("Mostrando el saldo actual...")
+        print("Mostrando archivos...")
 
     def mostrar_configuracion(self):
-        # Opciones del menú "Manto. Cuentas"
-        opciones_manto_cuentas = ["Procesos Automáticos",
-                                  "Mensajes H2H", "Generales", "CEP"]
-        for opcion in opciones_manto_cuentas:
+        opciones_configuracion = [
+            "Procesos Automáticos", "Mensajes H2H", "Generales", "CEP"]
+        for opcion in opciones_configuracion:
             btn = self.crear_boton(
                 self.frames["configuracion"], opcion, self.mostrar_opciones_configuracion)
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
     def mostrar_opciones_configuracion(self, opcion, boton):
-        # Cambiar el color del botón seleccionado en el menú de Manto. Cuentas
-        if self.boton_seleccionado_configuracion:
-            # Solo cambiar el color si el botón seleccionado aún existe
-            try:
-                self.boton_seleccionado_configuracion.config(bg='#d0cdc4')
-            except tk.TclError:
-                pass  # El botón ya no existe
-
-        boton.config(bg='#b9b1ad')
-        self.boton_seleccionado_configuracion = boton
-
-        # Mostrar el mensaje y limpiar el menú
         self.mostrar_mensaje(opcion)
 
     def mostrar_folio_solicitud_CEP(self):
-        print("Mostrando el saldo actual...")
-######
-    def mostrar_mensaje(self, opcion):
-        print(f"{opcion} seleccionada")
+        print("Mostrando folio de solicitud CEP...")
+
+    def mostrar_mensaje(self, mensaje):
+        print(f"Mostrando {mensaje}...")
 
 
 if __name__ == "__main__":
