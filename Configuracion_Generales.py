@@ -99,10 +99,22 @@ def Configuracion_Generales_Empresa(empresa_clave):
     concentrator_frame.grid(row=6, column=0, sticky=(tk.W, tk.E), pady=5)
     ttk.Label(concentrator_frame, text="Cuenta Concentradora",
               style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
+
     cuenta_combobox = ttk.Combobox(concentrator_frame, values=["Ninguno"])
     cuenta_combobox.grid(row=1, column=0, sticky=tk.W)
     cuenta_combobox.set("Ninguno")
-    ttk.Button(concentrator_frame, text="Crear", command=Crear_Nueva_Cuenta).grid(
+
+    # Define la función Cuenta_Nueva
+    def Cuenta_Nueva():
+        # Obtén los valores que necesita (empresa_clave y prefijo)
+        # Asegúrate de que estas variables están definidas en el contexto adecuado
+        prefijo = prefijo_entry.get()  # Obtiene el prefijo desde la entrada
+
+        # Llama a Crear_Nueva_Cuenta con los parámetros correctos
+        Crear_Nueva_Cuenta(empresa_clave, prefijo)
+
+    # Configura el botón para llamar a Cuenta_Nueva
+    ttk.Button(concentrator_frame, text="Crear", command=Cuenta_Nueva).grid(
         row=1, column=1, sticky=tk.W)
     ttk.Label(concentrator_frame, text="Cuenta Concentradora para la empresa").grid(
         row=1, column=2, sticky=tk.W)
@@ -118,6 +130,7 @@ def Configuracion_Generales_Empresa(empresa_clave):
         row=1, column=1, sticky=tk.W)
 
     # Función para cargar la configuración existente
+
     def cargar_configuracion():
         try:
             conexion = mysql.connector.connect(
@@ -265,6 +278,7 @@ def Configuracion_Generales_Empresa(empresa_clave):
     cargar_configuracion()
 
     root.mainloop()
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
