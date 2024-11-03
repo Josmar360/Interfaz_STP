@@ -3,7 +3,6 @@ from tkinter import ttk, messagebox
 import mysql.connector
 from Pantallas.Configuracion_Generales import Configuracion_Generales_Empresa
 
-
 def Buscar_Empresa():
     clave = search_entry.get()
 
@@ -23,18 +22,16 @@ def Buscar_Empresa():
         result = cursor.fetchone()
 
         if result:
-            # Llamar a la función `create_interface` si se encuentra la empresa
-            Configuracion_Generales_Empresa()  # Llama la función desde el módulo importado
+            # Llamar a la función `Configuracion_Generales_Empresa` pasando la clave de la empresa
+            Configuracion_Generales_Empresa(clave)
         else:
-            messagebox.showinfo(
-                "Sin resultados", f"No se encontró ninguna empresa con la clave '{clave}'.")
+            messagebox.showinfo("Sin resultados", f"No se encontró ninguna empresa con la clave '{clave}'.")
 
         cursor.close()
         conn.close()
 
     except mysql.connector.Error as err:
         messagebox.showerror("Error", f"Error al buscar la empresa: {err}")
-
 
 def Lista_Empresas():
     global search_entry
@@ -50,21 +47,17 @@ def Lista_Empresas():
     style.configure("TLabel", background="#d9f0ff", font=("Arial", 10))
     style.configure("TButton", background="#d9f0ff")
     style.configure("Main.TFrame", background="#d9f0ff")
-    style.configure("SubTitle.TLabel", font=(
-        "Arial", 10, "bold"), background="#bde0fe")
+    style.configure("SubTitle.TLabel", font=("Arial", 10, "bold"), background="#bde0fe")
 
     search_frame = ttk.Frame(main_frame, style="TFrame")
     search_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=5)
-    ttk.Label(search_frame, text="Clave de la Empresa:",
-              style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
+    ttk.Label(search_frame, text="Clave de la Empresa:", style="SubTitle.TLabel").grid(row=0, column=0, sticky=tk.W)
     search_entry = ttk.Entry(search_frame, width=30)
     search_entry.grid(row=0, column=1, sticky=tk.W, padx=(0, 10))
 
-    ttk.Button(search_frame, text="Buscar", command=Buscar_Empresa).grid(
-        row=1, column=0, columnspan=2, pady=10)
+    ttk.Button(search_frame, text="Buscar", command=Buscar_Empresa).grid(row=1, column=0, columnspan=2, pady=10)
 
     root.mainloop()
-
 
 if __name__ == "__main__":
     Lista_Empresas()

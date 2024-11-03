@@ -3,7 +3,7 @@ from tkinter import ttk
 from Pantallas.Crear_Nueva_Cuenta import Crear_Nueva_Cuenta
 
 
-def Configuracion_Generales_Empresa():
+def Configuracion_Generales_Empresa(empresa_clave):
     root = tk.Tk()
     root.title("Generales")
     root.configure(bg="#d9f0ff")  # Fondo azul pastel claro para la ventana
@@ -30,8 +30,8 @@ def Configuracion_Generales_Empresa():
     # Sección: Título principal y subtítulo
     title_frame = ttk.Frame(main_frame, style="TFrame")
     title_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=5)
-    ttk.Label(title_frame, text="ENGEN", style="SubTitle.TLabel").grid(
-        row=0, column=0, sticky=tk.W)
+    ttk.Label(title_frame, text=empresa_clave, style="SubTitle.TLabel").grid(
+        row=0, column=0, sticky=tk.W)  # Muestra la clave de la empresa
     ttk.Label(title_frame, text="Generales", style="Title.TLabel").grid(
         row=1, column=0, sticky=tk.W)
 
@@ -94,8 +94,8 @@ def Configuracion_Generales_Empresa():
     cuenta_combobox = ttk.Combobox(concentrator_frame, values=["Ninguno"])
     cuenta_combobox.grid(row=1, column=0, sticky=tk.W)
     cuenta_combobox.set("Ninguno")
-    ttk.Button(concentrator_frame, text="Crear",
-               command=Crear_Nueva_Cuenta).grid(row=1, column=1, sticky=tk.W)
+    ttk.Button(concentrator_frame, text="Crear", command=Crear_Nueva_Cuenta).grid(
+        row=1, column=1, sticky=tk.W)
     ttk.Label(concentrator_frame, text="Cuenta Concentradora para la empresa").grid(
         row=1, column=2, sticky=tk.W)
 
@@ -118,4 +118,5 @@ def Configuracion_Generales_Empresa():
 
 
 if __name__ == "__main__":
-    Configuracion_Generales_Empresa()
+    # Puedes poner aquí un valor de prueba
+    Configuracion_Generales_Empresa("Clave de la Empresa")
