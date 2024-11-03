@@ -1,6 +1,6 @@
 import tkinter as tk
 from Pantallas.Nueva_Empresa import Nueva_Empresa  # Importa el archivo Nueva_Empresa.py
-
+from Pantallas.Lista_Empresas import Lista_Empresas # Importa el archivo Lista_Empresas.py
 
 class Aplicacion(tk.Tk):
     def __init__(self):
@@ -190,7 +190,51 @@ class Aplicacion(tk.Tk):
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
     def mostrar_opciones_configuracion_empresas_seleccionada(self, opcion, boton):
-        self.mostrar_mensaje(opcion)
+        if self.boton_seleccionado_configuracion:
+            try:
+                self.boton_seleccionado_configuracion.config(bg='#d0cdc4')
+            except tk.TclError:
+                pass
+
+        boton.config(bg='#b9b1ad')
+        self.boton_seleccionado_configuracion = boton
+
+        # Limpia otras configuraciones previas si es necesario
+        self.limpiar_configuracion()
+
+        if opcion == "Generales":
+            self.mostrar_generales()
+        elif opcion == "Traspasos":
+            self.mostrar_traspasos()
+        elif opcion == "Tarjeta Débito":
+            self.mostrar_tarjeta_debito()
+
+    # Funciones separadas para cada opción de 'Configuración Empresas'
+    def mostrar_generales(self):
+        print("Mostrando la configuración de Generales...")
+
+        # Botón 'Nueva' para llamar a la función de Nueva_Empresa.py
+        btn_nueva = tk.Button(
+            self.frames["configuracion"],
+            text="Buscar Empresa",
+            bg='#d0cdc4',
+            fg='#8f7768',
+            width=25,
+            command=self.ejecutar_nueva_interfaz
+        )
+        btn_nueva.pack(pady=5)
+
+    def ejecutar_nueva_interfaz(self):
+        """Llama a la función 'Nueva_Empresa' del archivo Nueva_Empresa.py."""
+        Lista_Empresas()
+
+    def mostrar_traspasos(self):
+        print("Mostrando la configuración de Traspasos...")
+        # Aquí se puede agregar más widgets o botones específicos para 'Traspasos'
+
+    def mostrar_tarjeta_debito(self):
+        print("Mostrando la configuración de Tarjeta Débito...")
+        # Aquí se puede agregar más widgets o botones específicos para 'Tarjeta Débito'
 
     def mostrar_catalogos(self):
         print("Mostrando los catálogos...")

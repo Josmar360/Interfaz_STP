@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-def create_account_interface():
+def Crear_Nueva_Cuenta():
     account_window = tk.Toplevel()
     account_window.title("Nueva Cuenta")
     # Fondo azul pastel claro para la ventana
@@ -86,4 +86,4 @@ def save_account(account_name):
 
 
 if __name__ == "__main__":
-    create_account_interface()
+    Crear_Nueva_Cuenta()

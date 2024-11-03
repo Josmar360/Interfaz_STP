@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
-from create_account import create_account_interface
+from Pantallas.Crear_Nueva_Cuenta import Crear_Nueva_Cuenta
 
 
-def create_interface():
+def Configuracion_Generales_Empresa(nombre_empresa):
     root = tk.Tk()
     root.title("Generales")
     root.configure(bg="#d9f0ff")  # Fondo azul pastel claro para la ventana
@@ -30,7 +30,7 @@ def create_interface():
     # Sección: Título principal y subtítulo
     title_frame = ttk.Frame(main_frame, style="TFrame")
     title_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=5)
-    ttk.Label(title_frame, text="ENGEN", style="SubTitle.TLabel").grid(
+    ttk.Label(title_frame, text=nombre_empresa, style="SubTitle.TLabel").grid(
         row=0, column=0, sticky=tk.W)
     ttk.Label(title_frame, text="Generales", style="Title.TLabel").grid(
         row=1, column=0, sticky=tk.W)
@@ -95,7 +95,7 @@ def create_interface():
     cuenta_combobox.grid(row=1, column=0, sticky=tk.W)
     cuenta_combobox.set("Ninguno")
     ttk.Button(concentrator_frame, text="Crear",
-               command=create_account_interface).grid(row=1, column=1, sticky=tk.W)
+               command=Crear_Nueva_Cuenta).grid(row=1, column=1, sticky=tk.W)
     ttk.Label(concentrator_frame, text="Cuenta Concentradora para la empresa").grid(
         row=1, column=2, sticky=tk.W)
 
@@ -118,4 +118,5 @@ def create_interface():
 
 
 if __name__ == "__main__":
-    create_interface()
+    nombre_empresa = "Josmar"  # Aquí puedes obtener el nombre de la empresa de tu búsqueda
+    Configuracion_Generales_Empresa(nombre_empresa)
