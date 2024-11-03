@@ -213,7 +213,7 @@ class Aplicacion(tk.Tk):
     def mostrar_generales(self):
         print("Mostrando la configuración de Generales...")
 
-        # Botón 'Nueva' para llamar a la función de Nueva_Empresa.py
+        # Botón 'Buscar' para llamar a la función de Lista_Empresas.py
         btn_nueva = tk.Button(
             self.frames["configuracion"],
             text="Buscar Empresa",

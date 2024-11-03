@@ -110,7 +110,7 @@ def Configuracion_Generales_Empresa(empresa_clave):
         row=1, column=1, sticky=tk.W)
 
     # Botón de Aplicar
-    ttk.Button(main_frame, text="Aplicar").grid(
+    ttk.Button(main_frame, text="Guardar").grid(
         row=8, column=0, sticky=tk.W, pady=(20, 0))
 
     # Iniciar la ventana
@@ -118,5 +118,5 @@ def Configuracion_Generales_Empresa(empresa_clave):
 
 
 if __name__ == "__main__":
-    # Puedes poner aquí un valor de prueba
+    # Se puede colocar aquí un valor de prueba
     Configuracion_Generales_Empresa("Clave de la Empresa")

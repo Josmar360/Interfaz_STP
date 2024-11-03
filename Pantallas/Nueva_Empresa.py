@@ -108,7 +108,7 @@ def Nueva_Empresa():
     entry_rfc_ordenante.grid(row=1, column=1, sticky=tk.W, padx=(0, 10))
 
     # Botón de Aplicar
-    ttk.Button(main_frame, text="Aplicar", command=save_company).grid(
+    ttk.Button(main_frame, text="Guardar", command=save_company).grid(
         row=3, column=0, sticky=tk.E, pady=20)
 
     root.mainloop()
