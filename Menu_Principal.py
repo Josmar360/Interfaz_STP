@@ -1,6 +1,7 @@
 import tkinter as tk
-from Pantallas.Nueva_Empresa import Nueva_Empresa  # Importa el archivo Nueva_Empresa.py
-from Pantallas.Lista_Empresas import Lista_Empresas # Importa el archivo Lista_Empresas.py
+from Nueva_Empresa import Nueva_Empresa  # Importa el archivo Nueva_Empresa.py
+#from Pantallas.Lista_Empresas import Lista_Empresas # Importa el archivo Lista_Empresas.py
+import subprocess
 
 class Aplicacion(tk.Tk):
     def __init__(self):
@@ -180,7 +181,7 @@ class Aplicacion(tk.Tk):
 
     def ejecutar_nueva_empresa(self):
         """Llama a la función 'Nueva_Empresa' del archivo Nueva_Empresa.py."""
-        Nueva_Empresa()
+        subprocess.run(["python", "Nueva_Empresa.py"])
 
     def mostrar_opciones_configuracion_empresas(self):
         opciones_configuracion = ["Generales", "Traspasos", "Tarjeta Débito"]
@@ -225,8 +226,9 @@ class Aplicacion(tk.Tk):
         btn_nueva.pack(pady=5)
 
     def ejecutar_nueva_interfaz(self):
-        """Llama a la función 'Nueva_Empresa' del archivo Nueva_Empresa.py."""
-        Lista_Empresas()
+        """Llama a la función 'Listas Empresas' del archivo Listas_Empresas.py."""
+        #Lista_Empresas()
+        subprocess.run(["python", "Lista_Empresas.py"])
 
     def mostrar_traspasos(self):
         print("Mostrando la configuración de Traspasos...")

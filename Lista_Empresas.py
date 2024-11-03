@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import mysql.connector
-from Pantallas.Configuracion_Generales import Configuracion_Generales_Empresa
+# from Configuracion_Generales import iniciar_configuracion
+import subprocess
+
 
 def Buscar_Empresa():
     clave = search_entry.get()
@@ -23,7 +25,9 @@ def Buscar_Empresa():
 
         if result:
             # Llamar a la función `Configuracion_Generales_Empresa` pasando la clave de la empresa
-            Configuracion_Generales_Empresa(clave)
+            subprocess.run(["python", "Configuracion_Generales.py", clave])
+
+            #iniciar_configuracion(clave)
         else:
             messagebox.showinfo("Sin resultados", f"No se encontró ninguna empresa con la clave '{clave}'.")
 
