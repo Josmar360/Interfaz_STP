@@ -302,7 +302,35 @@ class Aplicacion(tk.Tk):
             btn.pack(side=tk.LEFT, padx=2, pady=1)
 
     def mostrar_opciones_configuracion(self, opcion, boton):
-        self.mostrar_mensaje(opcion)
+        if self.boton_seleccionado_cuentas:
+            try:
+                self.boton_seleccionado_cuentas.config(bg='#d0cdc4')
+            except tk.TclError:
+                pass
+
+        boton.config(bg='#b9b1ad')
+        self.boton_seleccionado_cuentas = boton
+
+        if opcion == "Procesos Automáticos":
+            self.mostrar_procesos_automaticos()
+        elif opcion == "Mensajes H2H":
+            self.mostrar_mensajes_H2H()
+        elif opcion == "Generales":
+            self.mostrar_Generales_configuracion()
+        elif opcion == "CEP":
+            self.mostrar_CEP()
+
+    def mostrar_procesos_automaticos(self):
+        subprocess.Popen(["python", "Buscar_Empresas_Automaticos.py"])
+
+    def mostrar_mensajes_H2H(self):
+        print("Mostrando Mensajes H2H...")
+
+    def mostrar_Generales_configuracion(self):
+        print("Mostrando generales...")
+
+    def mostrar_CEP(self):
+        print("Mostrando CEP...")
 
     def mostrar_folio_solicitud_CEP(self):
         print("Mostrando folio de solicitud CEP...")
