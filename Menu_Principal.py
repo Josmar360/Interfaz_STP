@@ -327,7 +327,7 @@ class Aplicacion(tk.Tk):
         print("Mostrando Mensajes H2H...")
 
     def mostrar_Generales_configuracion(self):
-        print("Mostrando generales...")
+        subprocess.Popen(["python", "Buscar_Empresas_Varios_Generales.py"])
 
     def mostrar_CEP(self):
         subprocess.Popen(["python", "Buscar_Empresas_CEP.py"])
