@@ -1,12 +1,13 @@
 import tkinter as tk
-from Nueva_Empresa import Nueva_Empresa  # Importa el archivo Nueva_Empresa.py
-#from Pantallas.Lista_Empresas import Lista_Empresas # Importa el archivo Lista_Empresas.py
+# from Nueva_Empresa import Nueva_Empresa  # Importa el archivo Nueva_Empresa.py
+# from Pantallas.Lista_Empresas import Lista_Empresas # Importa el archivo Lista_Empresas.py
 import subprocess
+
 
 class Aplicacion(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Interfaz Gráfica")
+        self.title("Simulación Sistema STP")
         self.geometry("800x600")
         self.configure(bg='#dcdcdc')
 
@@ -163,7 +164,29 @@ class Aplicacion(tk.Tk):
         boton.config(bg='#b9b1ad')
         self.boton_seleccionado_configuracion = boton
 
-        self.mostrar_mensaje(opcion)
+        # Limpia otras configuraciones previas si es necesario
+        self.limpiar_configuracion()
+
+        if opcion == "Propias":
+            self.mostrar_propias()
+        elif opcion == "Terceros":
+            self.mostrar_terceros()
+        elif opcion == "Manto. Cuenta Terceros":
+            self.mostrar_manto_cuenta_terceros()
+
+    # Funciones separadas para cada opción de 'Manto. Cuentas'
+    def mostrar_propias(self):
+        """Llama a la función 'Listas Empresas' del archivo Buscar_Empresas_Generales.py."""
+        # Lista_Empresas()
+        subprocess.run(["python", "Buscar_Empresas_Propias.py"])
+
+    def mostrar_terceros(self):
+        print("Mostrando configuración de cuentas de terceros...")
+        # Aquí se puede agregar widgets específicos para 'Terceros'
+
+    def mostrar_manto_cuenta_terceros(self):
+        print("Mostrando configuración de mantenimiento de cuenta de terceros...")
+        # Aquí se puede agregar widgets específicos para 'Manto. Cuenta Terceros'
 
     def mostrar_manto_empresas(self):
         print("Mostrando mantenimiento de empresas...")
@@ -226,9 +249,9 @@ class Aplicacion(tk.Tk):
         btn_nueva.pack(pady=5)
 
     def ejecutar_nueva_interfaz(self):
-        """Llama a la función 'Listas Empresas' del archivo Listas_Empresas.py."""
-        #Lista_Empresas()
-        subprocess.run(["python", "Lista_Empresas.py"])
+        """Llama a la función 'Listas Empresas' del archivo Buscar_Empresas_Generales.py."""
+        # Lista_Empresas()
+        subprocess.run(["python", "Buscar_Empresas_Generales.py"])
 
     def mostrar_traspasos(self):
         print("Mostrando la configuración de Traspasos...")

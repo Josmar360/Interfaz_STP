@@ -141,15 +141,16 @@ def Configuracion_Generales_Empresa(empresa_clave):
             )
             cursor = conexion.cursor()
 
+            # Cargar la configuración general
             cursor.execute(
                 "SELECT * FROM configuracion_generales WHERE clave = %s", (empresa_clave,))
             result = cursor.fetchone()
 
             if result:
                 (clave, enviar_ordenes, participacion_indirecto, empresa_crypto,
-                 persona_fisica_pd, participante_directo, valida_cuenta,
-                 omitir_validacion, usar_prefijo_sub_empresa, usar_prefijo,
-                 prefijo, longitud_subprefijo, cuenta_concentradora, acl) = result
+                persona_fisica_pd, participante_directo, valida_cuenta,
+                omitir_validacion, usar_prefijo_sub_empresa, usar_prefijo,
+                prefijo, longitud_subprefijo, cuenta_concentradora, acl) = result
 
                 enviar_ordenes_var.set(enviar_ordenes)
                 selected_option.set(participacion_indirecto)
@@ -161,15 +162,28 @@ def Configuracion_Generales_Empresa(empresa_clave):
                 prefijo_entry.insert(0, prefijo)
                 subprefijo_entry.delete(0, tk.END)
                 subprefijo_entry.insert(0, longitud_subprefijo)
-                cuenta_combobox.set(cuenta_concentradora)
                 acl_entry.delete(0, tk.END)
                 acl_entry.insert(0, acl)
+
+                # Consultar la concatenación de la cuenta concentradora
+                cursor.execute("""
+                    SELECT CONCAT(numero_banco, plaza, prefijo, numero, dv)
+                    FROM cuenta
+                    WHERE clave = %s
+                """, (empresa_clave,))
+                cuenta_result = cursor.fetchone()
+
+                if cuenta_result and cuenta_result[0]:
+                    cuenta_combobox.set(cuenta_result[0])
+                else:
+                    cuenta_combobox.set("Ninguno")
 
             cursor.close()
             conexion.close()
         except mysql.connector.Error as e:
             messagebox.showerror(
                 "Error", f"Error al cargar la configuración: {e}")
+
 
     # Función para guardar la configuración
     def guardar_configuracion():
@@ -266,13 +280,19 @@ def Configuracion_Generales_Empresa(empresa_clave):
             messagebox.showerror(
                 "Error", f"Error al guardar la configuración: {e}")
 
+    def actualizar_configuracion():
+        cargar_configuracion()  # Llama a la función existente para recargar los datos desde la base de datos
+        messagebox.showinfo("Actualización", "Datos actualizados correctamente")
+
     # Botones para guardar y salir
     buttons_frame = ttk.Frame(main_frame, style="TFrame")
     buttons_frame.grid(row=8, column=0, sticky=(tk.W, tk.E), pady=5)
     ttk.Button(buttons_frame, text="Guardar", command=guardar_configuracion).grid(
         row=0, column=0, sticky=tk.W)
-    ttk.Button(buttons_frame, text="Salir", command=root.destroy).grid(
+    ttk.Button(buttons_frame, text="Actualizar", command=actualizar_configuracion).grid(
         row=0, column=1, sticky=tk.W)
+    ttk.Button(buttons_frame, text="Salir", command=root.destroy).grid(
+        row=0, column=2, sticky=tk.W)
 
     # Cargar la configuración existente al abrir la ventana
     cargar_configuracion()
