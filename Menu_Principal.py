@@ -330,7 +330,7 @@ class Aplicacion(tk.Tk):
         print("Mostrando generales...")
 
     def mostrar_CEP(self):
-        print("Mostrando CEP...")
+        subprocess.Popen(["python", "Buscar_Empresas_CEP.py"])
 
     def mostrar_folio_solicitud_CEP(self):
         print("Mostrando folio de solicitud CEP...")
