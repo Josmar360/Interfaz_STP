@@ -25,8 +25,7 @@ def Buscar_Empresas_Propias():
 
         if result:
             # Llamar a la función `Visualizar_Cuenta.py` pasando la clave de la empresa
-            print("CEP")
-            #subprocess.Popen(["python", "Procesos_Automaticos.py", clave])
+            subprocess.Popen(["python", "Configuracion_CEP.py", clave])
 
         else:
             messagebox.showinfo(
