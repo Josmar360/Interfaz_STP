@@ -178,7 +178,7 @@ class Aplicacion(tk.Tk):
     def mostrar_propias(self):
         """Llama a la función 'Listas Empresas' del archivo Buscar_Empresas_Generales.py."""
         # Lista_Empresas()
-        subprocess.run(["python", "Buscar_Empresas_Propias.py"])
+        subprocess.Popen(["python", "Buscar_Empresas_Propias.py"])
 
     def mostrar_terceros(self):
         print("Mostrando configuración de cuentas de terceros...")
@@ -204,7 +204,7 @@ class Aplicacion(tk.Tk):
 
     def ejecutar_nueva_empresa(self):
         """Llama a la función 'Nueva_Empresa' del archivo Nueva_Empresa.py."""
-        subprocess.run(["python", "Nueva_Empresa.py"])
+        subprocess.Popen(["python", "Nueva_Empresa.py"])
 
     def mostrar_opciones_configuracion_empresas(self):
         opciones_configuracion = ["Generales", "Traspasos", "Tarjeta Débito"]
@@ -251,7 +251,7 @@ class Aplicacion(tk.Tk):
     def ejecutar_nueva_interfaz(self):
         """Llama a la función 'Listas Empresas' del archivo Buscar_Empresas_Generales.py."""
         # Lista_Empresas()
-        subprocess.run(["python", "Buscar_Empresas_Generales.py"])
+        subprocess.Popen(["python", "Buscar_Empresas_Generales.py"])
 
     def mostrar_traspasos(self):
         print("Mostrando la configuración de Traspasos...")

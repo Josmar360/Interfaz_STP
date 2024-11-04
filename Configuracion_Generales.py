@@ -1,7 +1,7 @@
 import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
-import mysql.connector  # Asegúrate de tener este paquete instalado
+import mysql.connector
 from Crear_Nueva_Cuenta import Crear_Nueva_Cuenta
 
 

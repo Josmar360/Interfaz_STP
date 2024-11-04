@@ -24,10 +24,9 @@ def Buscar_Empresas_Propias():
         result = cursor.fetchone()
 
         if result:
-            # Llamar a la función `Configuracion_Generales_Empresa` pasando la clave de la empresa
+            # Llamar a la función `Visualizar_Cuenta.py` pasando la clave de la empresa
             subprocess.Popen(["python", "Visualizar_Cuenta.py", clave])
 
-            # iniciar_configuracion(clave)
         else:
             messagebox.showinfo(
                 "Sin resultados", f"No se encontró ninguna empresa con la clave '{clave}'.")

@@ -103,11 +103,11 @@ def save_account(clave, nombre_cuenta, numero_banco, plaza, prefijo, numero, dv,
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.withdraw()  # Ocultamos la ventana principal de Tkinter
+    root.withdraw()  # Oculta la ventana principal de Tkinter
 
-    # Aquí debes definir cómo obtener 'clave' y 'prefijo'
-    clave = "Josmar"  # Cambia esto según tu lógica
-    prefijo = "1"  # Cambia esto según tu lógica
+    # Aquí se define cómo obtener 'clave' y 'prefijo'
+    clave = "Josmar"  # Clave solo de muestra
+    prefijo = "1"  # Pregijo solo de muestra
 
     Crear_Nueva_Cuenta(clave, prefijo)
     root.mainloop()
