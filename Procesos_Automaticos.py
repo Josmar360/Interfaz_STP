@@ -1,10 +1,11 @@
 import tkinter as tk
+import mysql.connector
 from tkinter import ttk
 import sys
 
 
 def main(clave):
-    root = tk.Tk()
+    root = tk.Tk() 
     root.title("Procesos Automáticos")
     root.geometry("560x730+300+50")
     root.configure(bg="#d9f0ff")
@@ -222,9 +223,124 @@ def main(clave):
                                        devoluciones_tipo_pago_causa,
                                        devoluciones_tipo_pago_autorizar)
 
+    def insertar_datos():
+        # Conexión a la base de datos
+        #clave = clave_entry.get().strip()
+        #print(f"Valor de clave obtenido: {clave}") 
+        conexion = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="Sarinha_3",
+            database="STP"
+        )
+
+        cursor = conexion.cursor()
+
+        # Consulta SQL para insertar los datos
+        consulta = """
+        INSERT INTO procesos_automaticos (
+            clave,
+            autorizacion_ordenes_manual_activar,
+            autorizacion_ordenes_manual_default,
+            autorizacion_ordenes_manual_monto_maximo,
+            autorizacion_ordenes_archivo_activar,
+            autorizacion_ordenes_archivo_default,
+            autorizacion_ordenes_archivo_monto_maximo,
+            autorizacion_ordenes_h2h_activar,
+            autorizacion_ordenes_h2h_default,
+            autorizacion_ordenes_h2h_monto_maximo,
+            autorizacion_ordenes_devoluciones_h2h_activar,
+            autorizacion_ordenes_devoluciones_h2h_default,
+            autorizacion_ordenes_devoluciones_h2h_monto_maximo,
+            autorizacion_ordenes_auto_cobro_activar,
+            autorizacion_ordenes_auto_cobro_default,
+            autorizacion_ordenes_auto_cobro_monto_maximo,
+            autorizacion_traspasos_h2h_activar,
+            autorizacion_traspasos_h2h_default,
+            autorizacion_traspasos_devoluciones_h2h_activar,
+            autorizacion_traspasos_devoluciones_h2h_default,
+            autorizacion_traspasos_auto_cobro_activar,
+            autorizacion_traspasos_auto_cobro_default,
+            devoluciones_rastreo_duplicado_activar,
+            devoluciones_rastreo_duplicado_causa,
+            devoluciones_rastreo_duplicado_autorizar,
+            devoluciones_error_detalle_activar,
+            devoluciones_error_detalle_causa,
+            devoluciones_error_detalle_autorizar,
+            devoluciones_caracter_invalido_activar,
+            devoluciones_caracter_invalido_causa,
+            devoluciones_caracter_invalido_autorizar,
+            devoluciones_cuenta_invalida_activar,
+            devoluciones_cuenta_invalida_causa,
+            devoluciones_cuenta_invalida_autorizar,
+            devoluciones_tipo_cta_beneficiario_activar,
+            devoluciones_tipo_cta_beneficiario_causa,
+            devoluciones_tipo_cta_beneficiario_autorizar,
+            devoluciones_tipo_cta_ordenante_activar,
+            devoluciones_tipo_cta_ordenante_causa,
+            devoluciones_tipo_cta_ordenante_autorizar,
+            devoluciones_tipo_pago_activar,
+            devoluciones_tipo_pago_causa,
+            devoluciones_tipo_pago_autorizar
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+        """
+
+        valores = (
+            clave,
+            autorizacion_ordenes_manual_activar.get(),
+            autorizacion_ordenes_manual_default.get(),
+            autorizacion_ordenes_manual_monto_maximo.get(),
+            autorizacion_ordenes_archivo_activar.get(),
+            autorizacion_ordenes_archivo_default.get(),
+            autorizacion_ordenes_archivo_monto_maximo.get(),
+            autorizacion_ordenes_h2h_activar.get(),
+            autorizacion_ordenes_h2h_default.get(),
+            autorizacion_ordenes_h2h_monto_maximo.get(),
+            autorizacion_ordenes_devoluciones_h2h_activar.get(),
+            autorizacion_ordenes_devoluciones_h2h_default.get(),
+            autorizacion_ordenes_devoluciones_h2h_monto_maximo.get(),
+            autorizacion_ordenes_auto_cobro_activar.get(),
+            autorizacion_ordenes_auto_cobro_default.get(),
+            autorizacion_ordenes_auto_cobro_monto_maximo.get(),
+            autorizacion_traspasos_h2h_activar.get(),
+            autorizacion_traspasos_h2h_default.get(),
+            autorizacion_traspasos_devoluciones_h2h_activar.get(),
+            autorizacion_traspasos_devoluciones_h2h_default.get(),
+            autorizacion_traspasos_auto_cobro_activar.get(),
+            autorizacion_traspasos_auto_cobro_default.get(),
+            devoluciones_rastreo_duplicado_activar.get(),
+            devoluciones_rastreo_duplicado_causa.get(),
+            devoluciones_rastreo_duplicado_autorizar.get(),
+            devoluciones_error_detalle_activar.get(),
+            devoluciones_error_detalle_causa.get(),
+            devoluciones_error_detalle_autorizar.get(),
+            devoluciones_caracter_invalido_activar.get(),
+            devoluciones_caracter_invalido_causa.get(),
+            devoluciones_caracter_invalido_autorizar.get(),
+            devoluciones_cuenta_invalida_activar.get(),
+            devoluciones_cuenta_invalida_causa.get(),
+            devoluciones_cuenta_invalida_autorizar.get(),
+            devoluciones_tipo_cta_beneficiario_activar.get(),
+            devoluciones_tipo_cta_beneficiario_causa.get(),
+            devoluciones_tipo_cta_beneficiario_autorizar.get(),
+            devoluciones_tipo_cta_ordenante_activar.get(),
+            devoluciones_tipo_cta_ordenante_causa.get(),
+            devoluciones_tipo_cta_ordenante_autorizar.get(),
+            devoluciones_tipo_pago_activar.get(),
+            devoluciones_tipo_pago_causa.get(),
+            devoluciones_tipo_pago_autorizar.get()
+        )
+
+        cursor.execute(consulta, valores)
+        conexion.commit()
+        cursor.close()
+        conexion.close()
+        print("Datos insertados exitosamente en la base de datos.")
+
     # Botón de "Aplicar" en la parte inferior derecha
+
     apply_button = tk.Button(root, text="Aceptar", bg="#91ccea", fg="white", font=(
-        "Arial", 12), activebackground="#bde0fe", activeforeground="black")
+        "Arial", 12), activebackground="#bde0fe", activeforeground="black", command=insertar_datos)
     apply_button.pack(padx=10, pady=5)
 
     root.mainloop()
