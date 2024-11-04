@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox  # Asegúrate de importar messagebox
-import mysql.connector  # Asegúrate de que esta librería está instalada
+from tkinter import messagebox
+import mysql.connector
 import sys
 
 def create_config_window(clave):
@@ -129,10 +129,10 @@ def create_config_window(clave):
         try:
             # Conectar a la base de datos
             connection = mysql.connector.connect(
-                host='localhost',          # Cambia por tu host
-                user='root',       # Cambia por tu usuario
-                password='Sarinha_3',  # Cambia por tu contraseña
-                database='STP'  # Cambia por tu base de datos
+                host='localhost',
+                user='root',
+                password='Sarinha_3',
+                database='STP'
             )
 
             cursor = connection.cursor()
