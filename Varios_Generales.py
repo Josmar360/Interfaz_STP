@@ -217,7 +217,7 @@ def create_config_window(clave):
             # Mensaje de éxito
             messagebox.showinfo(
                 "Éxito", "Configuración guardada correctamente.")
-            root.destroy()  # Cerrar la ventana después de guardar
+            #root.destroy()  # Cerrar la ventana después de guardar
 
         except mysql.connector.Error as err:
             messagebox.showerror("Error", f"Error al guardar configuración: {
