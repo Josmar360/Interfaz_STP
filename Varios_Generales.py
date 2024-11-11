@@ -6,7 +6,7 @@ import sys
 
 def create_config_window(clave):
     root = tk.Tk()
-    root.title("Configuración")
+    root.title("Configuración Varios")
     root.geometry("500x670+300+50")
     root.configure(bg="#d9f0ff")  # Fondo azul pastel claro para la ventana
 

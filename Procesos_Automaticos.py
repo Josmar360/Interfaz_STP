@@ -7,7 +7,7 @@ import sys
 def main(clave):
     root = tk.Tk() 
     root.title("Procesos Automáticos")
-    root.geometry("560x730+300+50")
+    root.geometry("560x730")
     root.configure(bg="#d9f0ff")
 
     header_color = "#91ccea"
@@ -15,7 +15,7 @@ def main(clave):
 
     # Sección del encabezado
     header_frame = tk.Frame(root, bg="#d9f0ff")
-    header_frame.pack(fill=tk.X, pady=(10, 10))
+    header_frame.pack(fill=tk.X, pady=(1, 1))
 
     header_label = tk.Label(header_frame, text=clave,
                             bg=header_color, fg="white", font=("Arial", 16))
@@ -91,7 +91,7 @@ def main(clave):
 
     # Sección de Autorización de traspasos
     section2 = tk.LabelFrame(root, text="Autorización de traspasos",
-                             bg=section_color, font=("Arial", 12), padx=10, pady=5)
+                             bg=section_color, font=("Arial", 12), padx=10, pady=1)
     section2.pack(fill=tk.X, padx=10, pady=5)
 
     # Variables para almacenar los datos de entrada de la sección de traspasos

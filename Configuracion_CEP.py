@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import mysql.connector
+import sys
 
 
 def main(clave):
@@ -128,4 +129,8 @@ def main(clave):
 
 
 if __name__ == "__main__":
-    main("Prueba1")
+    if len(sys.argv) > 1:
+        clave = sys.argv[1]  # Obtiene el argumento pasado
+        main(clave)
+    else:
+        print("No se proporcionó ninguna clave.")

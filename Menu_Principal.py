@@ -338,7 +338,9 @@ class Aplicacion(tk.Tk):
     def mostrar_mensaje(self, mensaje):
         print(f"Mostrando {mensaje}...")
 
-
-if __name__ == "__main__":
+def main():
     app = Aplicacion()
     app.mainloop()
+
+if __name__ == "__main__":
+    main()

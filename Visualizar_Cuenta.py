@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import mysql.connector
+import sys
 
 
 def Crear_Nueva_Cuenta(clave):
@@ -141,11 +142,11 @@ def save_account(clave, nombre_cuenta, numero_banco, plaza, prefijo, numero, dv,
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()  # Ocultamos la ventana principal de Tkinter
-
-    # Aquí debes definir cómo obtener 'clave'
-    clave = "Josmar"  # Cambia esto según tu lógica
-
-    Crear_Nueva_Cuenta(clave)
-    root.mainloop()
+    if len(sys.argv) > 1:
+        root = tk.Tk()
+        root.withdraw()
+        clave = sys.argv[1]  # Obtiene el argumento pasado
+        Crear_Nueva_Cuenta(clave)
+        root.mainloop()
+    else:
+        print("No se proporcionó ninguna clave.")
