@@ -7,7 +7,7 @@ import sys
 def main(clave):
     root = tk.Tk()
     root.title("Configuración de CEP")
-    root.geometry("800x650+300+50")
+    root.geometry("800x650+150+10")
     root.configure(bg="#d9f0ff")
 
     header_color = "#91ccea"

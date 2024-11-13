@@ -7,7 +7,7 @@ import sys
 def main(clave):
     root = tk.Tk() 
     root.title("Procesos Automáticos")
-    root.geometry("560x730")
+    root.geometry("560x730+150+10")
     root.configure(bg="#d9f0ff")
 
     header_color = "#91ccea"
@@ -18,7 +18,7 @@ def main(clave):
     header_frame.pack(fill=tk.X, pady=(1, 1))
 
     header_label = tk.Label(header_frame, text=clave,
-                            bg=header_color, fg="white", font=("Arial", 16))
+                            bg=header_color, fg="white", font=("Arial", 12))
     header_label.pack(side=tk.TOP, fill=tk.X)
 
     # Sección de Autorización de órdenes

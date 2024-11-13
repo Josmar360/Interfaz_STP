@@ -8,7 +8,7 @@ class Aplicacion(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Simulación Sistema STP")
-        self.geometry("800x600")
+        self.geometry("800x600+150+10")
         self.configure(bg='#dcdcdc')
 
         # Crear frames para los menús

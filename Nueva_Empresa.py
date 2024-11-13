@@ -47,6 +47,7 @@ def save_company():
 def Nueva_Empresa():
     global entry_clave, entry_nombre, entry_razon_social, entry_rfc, entry_direccion, entry_nombre_ordenante, entry_rfc_ordenante, var_empresa_activa
     root = tk.Tk()
+    root.geometry("350x270+150+10")
     root.title("Nueva Empresa")
     root.configure(bg="#d9f0ff")
 

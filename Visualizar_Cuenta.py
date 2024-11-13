@@ -22,6 +22,9 @@ def Crear_Nueva_Cuenta(clave):
     account_window.title("Cuenta Cobranza")
     account_window.configure(bg="#d9f0ff")
 
+    # Configura el tamaño y la posición de la ventana
+    account_window.geometry("290x320+150+10")
+
     main_frame = ttk.Frame(
         account_window, padding="15 15 15 15", style="Main.TFrame")
     main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))

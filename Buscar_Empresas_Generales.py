@@ -42,6 +42,7 @@ def Buscar_Empresas_Generales():
 def Buscar_Empresas():
     global search_entry
     root = tk.Tk()
+    root.geometry("360x100+150+10")
     root.title("Buscar Empresa")
     root.configure(bg="#d9f0ff")
 

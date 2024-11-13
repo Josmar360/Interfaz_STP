@@ -7,6 +7,7 @@ from Crear_Nueva_Cuenta import Crear_Nueva_Cuenta
 
 def Configuracion_Generales_Empresa(empresa_clave):
     root = tk.Tk()
+    root.geometry("590x570+150+10")
     root.title("Generales")
     root.configure(bg="#d9f0ff")  # Fondo azul pastel claro para la ventana
 
